@@ -134,4 +134,11 @@ class TarefaServiceTest {
     assertThat(service.estaAtrasada(t)).isFalse();
     assertThat(service.calcularAtraso(t)).isZero();
   }
+
+  @Test
+  void deveAceitarPrazoHoje() {
+    Tarefa t = service.criar(new CriarTarefaRequest("Para hoje", null, null, HOJE));
+
+    assertThat(t.getPrazo()).isEqualTo(HOJE);
+  }
 }

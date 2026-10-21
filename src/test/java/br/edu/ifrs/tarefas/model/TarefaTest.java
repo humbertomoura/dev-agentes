@@ -40,4 +40,19 @@ class TarefaTest {
     assertThat(t.estaAtrasada(HOJE)).isTrue();
     assertThat(t.diasDeAtraso(HOJE)).isEqualTo(3);
   }
+
+  @Test
+  void prazoHojeNaoEstaAtrasada() {
+    Tarefa t = new Tarefa("Entrega", null, Prioridade.ALTA, HOJE, HOJE.minusDays(5));
+
+    assertThat(t.estaAtrasada(HOJE)).isFalse();
+    assertThat(t.diasDeAtraso(HOJE)).isZero();
+  }
+
+  @Test
+  void semPrazoNoSetimoDiaAindaEstaEmDia() {
+    Tarefa t = new Tarefa("Sem prazo", null, HOJE.minusDays(7));
+
+    assertThat(t.estaAtrasada(HOJE)).isFalse();
+  }
 }

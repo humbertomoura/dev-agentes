@@ -143,4 +143,14 @@ class TarefaControllerIT {
         .andExpect(jsonPath("$.prioridade").value("MEDIA"))
         .andExpect(jsonPath("$.prazo").doesNotExist());
   }
+
+  @Test
+  void deveAceitarPrazoHoje() throws Exception {
+    mvc.perform(
+            post("/tarefas")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"titulo\":\"Para hoje\",\"prazo\":\"2026-10-23\"}"))
+        .andExpect(status().isCreated())
+        .andExpect(jsonPath("$.atrasada").value(false));
+  }
 }
