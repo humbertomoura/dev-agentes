@@ -82,6 +82,19 @@ src/main/java/br/edu/ifrs/tarefas/
 src/main/resources/db/migration/   migrations Flyway (V1, V2, ...)
 ```
 
+## Configuração do agente (`.claude/`)
+
+A partir da branch `modulo-7`:
+
+| Arquivo | Para quê |
+|---|---|
+| `.claude/settings.json` | permissões (allow/deny) e hook que formata o código após cada edição |
+| `.claude/skills/revisao-codigo/` | skill de revisão com checklist e script de cobertura (JaCoCo) |
+| `.claude/agents/testador.md` | subagente que escreve e roda testes |
+| `.claude/agents/revisor.md` | subagente revisor, sem permissão de edição |
+
+Preferências pessoais vão em `.claude/settings.local.json`, que fica fora do Git.
+
 ## Licença
 
 MIT. Veja [LICENSE](LICENSE).
