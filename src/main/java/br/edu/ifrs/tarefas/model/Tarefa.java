@@ -34,11 +34,24 @@ public class Tarefa {
   @Column(name = "concluida_em")
   private LocalDate concluidaEm;
 
+  @Enumerated(EnumType.STRING)
+  @Column(nullable = false, length = 10)
+  private Prioridade prioridade;
+
+  private LocalDate prazo;
+
   protected Tarefa() {}
 
   public Tarefa(String titulo, String descricao, LocalDate criadaEm) {
+    this(titulo, descricao, Prioridade.MEDIA, null, criadaEm);
+  }
+
+  public Tarefa(
+      String titulo, String descricao, Prioridade prioridade, LocalDate prazo, LocalDate criadaEm) {
     this.titulo = titulo;
     this.descricao = descricao;
+    this.prioridade = prioridade;
+    this.prazo = prazo;
     this.criadaEm = criadaEm;
     this.status = StatusTarefa.PENDENTE;
   }
@@ -84,5 +97,13 @@ public class Tarefa {
 
   public LocalDate getConcluidaEm() {
     return concluidaEm;
+  }
+
+  public Prioridade getPrioridade() {
+    return prioridade;
+  }
+
+  public LocalDate getPrazo() {
+    return prazo;
   }
 }

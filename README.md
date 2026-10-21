@@ -31,9 +31,9 @@ No Windows, use `mvnw.cmd` no lugar de `./mvnw`.
 
 | Método | Caminho | Descrição |
 |---|---|---|
-| GET | `/tarefas?status=PENDENTE` | lista tarefas, com filtro opcional por status |
+| GET | `/tarefas?status=PENDENTE&prioridade=ALTA` | lista tarefas, com filtros opcionais |
 | GET | `/tarefas/{id}` | detalha uma tarefa |
-| POST | `/tarefas` | cria tarefa: `{"titulo": "...", "descricao": "..."}` |
+| POST | `/tarefas` | cria tarefa: `{"titulo": "...", "descricao": "...", "prioridade": "ALTA", "prazo": "2026-11-30"}` |
 | PATCH | `/tarefas/{id}/iniciar` | move de PENDENTE para EM_ANDAMENTO |
 | PATCH | `/tarefas/{id}/concluir` | conclui a tarefa |
 | DELETE | `/tarefas/{id}` | exclui a tarefa |

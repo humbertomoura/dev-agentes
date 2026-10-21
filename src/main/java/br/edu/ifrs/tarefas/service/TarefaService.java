@@ -1,6 +1,7 @@
 package br.edu.ifrs.tarefas.service;
 
 import br.edu.ifrs.tarefas.dto.CriarTarefaRequest;
+import br.edu.ifrs.tarefas.model.Prioridade;
 import br.edu.ifrs.tarefas.model.StatusTarefa;
 import br.edu.ifrs.tarefas.model.Tarefa;
 import br.edu.ifrs.tarefas.repository.TarefaRepository;
@@ -15,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class TarefaService {
 
-  /** Toda tarefa aberta deve ser concluída em até 7 dias após a criação. */
+  /** Tarefas sem prazo devem ser concluídas em até 7 dias após a criação. */
   static final int PRAZO_PADRAO_DIAS = 7;
 
   private final TarefaRepository repository;
@@ -30,16 +31,31 @@ public class TarefaService {
     if (req.titulo() == null || req.titulo().isBlank()) {
       throw new IllegalArgumentException("O título é obrigatório");
     }
-    Tarefa t = new Tarefa(req.titulo().trim(), req.descricao(), hoje());
+    validarPrazo(req.prazo());
+    Tarefa t =
+        new Tarefa(
+            req.titulo().trim(), req.descricao(), req.prioridadeOuPadrao(), req.prazo(), hoje());
     return repository.save(t);
   }
 
-  @Transactional(readOnly = true)
-  public List<Tarefa> listar(StatusTarefa status) {
-    if (status == null) {
-      return repository.findAllByOrderByIdAsc();
+  private void validarPrazo(LocalDate prazo) {
+    if (prazo != null && prazo.isBefore(hoje())) {
+      throw new IllegalArgumentException("O prazo não pode estar no passado");
     }
-    return repository.findByStatusOrderByIdAsc(status);
+  }
+
+  @Transactional(readOnly = true)
+  public List<Tarefa> listar(StatusTarefa status, Prioridade prioridade) {
+    if (status != null && prioridade != null) {
+      return repository.findByStatusAndPrioridadeOrderByIdAsc(status, prioridade);
+    }
+    if (status != null) {
+      return repository.findByStatusOrderByIdAsc(status);
+    }
+    if (prioridade != null) {
+      return repository.findByPrioridadeOrderByIdAsc(prioridade);
+    }
+    return repository.findAllByOrderByIdAsc();
   }
 
   @Transactional(readOnly = true)
@@ -63,17 +79,25 @@ public class TarefaService {
     repository.delete(buscar(id));
   }
 
-  /** Dias além do prazo padrão. Tarefas concluídas nunca estão atrasadas. */
+  /**
+   * Dias além do prazo. Usa o prazo da tarefa ou, se não houver, 7 dias após a criação. Tarefas
+   * concluídas nunca estão atrasadas.
+   */
   public long calcularAtraso(Tarefa t) {
     if (t.isConcluida()) {
       return 0;
     }
-    long diasEmAberto = ChronoUnit.DAYS.between(t.getCriadaEm(), hoje());
-    return Math.max(0, diasEmAberto - PRAZO_PADRAO_DIAS);
+    LocalDate limite =
+        t.getPrazo() != null ? t.getPrazo() : t.getCriadaEm().plusDays(PRAZO_PADRAO_DIAS);
+    return Math.max(0, ChronoUnit.DAYS.between(limite, hoje()));
   }
 
   public boolean estaAtrasada(Tarefa t) {
-    return calcularAtraso(t) > 0;
+    LocalDate hoje = hoje();
+    if (t.getPrazo() != null && t.getPrazo().isBefore(hoje) && !t.isConcluida()) {
+      return true;
+    }
+    return t.getPrazo() == null && calcularAtraso(t) > 0;
   }
 
   private LocalDate hoje() {

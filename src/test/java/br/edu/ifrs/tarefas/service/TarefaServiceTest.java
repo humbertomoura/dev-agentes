@@ -7,6 +7,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import br.edu.ifrs.tarefas.dto.CriarTarefaRequest;
+import br.edu.ifrs.tarefas.model.Prioridade;
 import br.edu.ifrs.tarefas.model.StatusTarefa;
 import br.edu.ifrs.tarefas.model.Tarefa;
 import br.edu.ifrs.tarefas.repository.TarefaRepository;
@@ -89,6 +90,48 @@ class TarefaServiceTest {
     Tarefa t = new Tarefa("Antiga", null, HOJE.minusDays(30));
     t.concluir(HOJE);
 
+    assertThat(service.calcularAtraso(t)).isZero();
+  }
+
+  @Test
+  void prioridadePadraoEhMedia() {
+    Tarefa t = service.criar(new CriarTarefaRequest("Sem prioridade", null));
+
+    assertThat(t.getPrioridade()).isEqualTo(Prioridade.MEDIA);
+    assertThat(t.getPrazo()).isNull();
+  }
+
+  @Test
+  void deveCriarComPrioridadeEPrazo() {
+    Tarefa t =
+        service.criar(new CriarTarefaRequest("TCC", null, Prioridade.ALTA, HOJE.plusDays(10)));
+
+    assertThat(t.getPrioridade()).isEqualTo(Prioridade.ALTA);
+    assertThat(t.getPrazo()).isEqualTo(HOJE.plusDays(10));
+  }
+
+  @Test
+  void deveRejeitarPrazoNoPassado() {
+    var req = new CriarTarefaRequest("Atrasada", null, null, HOJE.minusDays(1));
+
+    assertThatThrownBy(() -> service.criar(req))
+        .isInstanceOf(IllegalArgumentException.class)
+        .hasMessageContaining("prazo");
+  }
+
+  @Test
+  void tarefaComPrazoVencidoEstaAtrasada() {
+    Tarefa t = new Tarefa("Relatório", null, Prioridade.ALTA, HOJE.minusDays(2), HOJE.minusDays(3));
+
+    assertThat(service.estaAtrasada(t)).isTrue();
+    assertThat(service.calcularAtraso(t)).isEqualTo(2);
+  }
+
+  @Test
+  void prazoDaTarefaPrevaleceSobreOPrazoPadrao() {
+    Tarefa t = new Tarefa("Longa", null, Prioridade.BAIXA, HOJE.plusDays(5), HOJE.minusDays(20));
+
+    assertThat(service.estaAtrasada(t)).isFalse();
     assertThat(service.calcularAtraso(t)).isZero();
   }
 }

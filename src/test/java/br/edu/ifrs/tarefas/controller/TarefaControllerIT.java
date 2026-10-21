@@ -89,4 +89,58 @@ class TarefaControllerIT {
   void deveRetornar404ParaTarefaInexistente() throws Exception {
     mvc.perform(get("/tarefas/999")).andExpect(status().isNotFound());
   }
+
+  @Test
+  void deveCriarTarefaComPrioridadeEPrazo() throws Exception {
+    mvc.perform(
+            post("/tarefas")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(
+                    "{\"titulo\":\"Entregar TCC\",\"prioridade\":\"ALTA\",\"prazo\":\"2026-11-30\"}"))
+        .andExpect(status().isCreated())
+        .andExpect(jsonPath("$.prioridade").value("ALTA"))
+        .andExpect(jsonPath("$.prazo").value("2026-11-30"))
+        .andExpect(jsonPath("$.atrasada").value(false));
+  }
+
+  @Test
+  void tarefaSemPrioridadeRecebeMedia() throws Exception {
+    mvc.perform(
+            post("/tarefas")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"titulo\":\"Sem prioridade\"}"))
+        .andExpect(status().isCreated())
+        .andExpect(jsonPath("$.prioridade").value("MEDIA"));
+  }
+
+  @Test
+  void deveRejeitarPrazoNoPassado() throws Exception {
+    mvc.perform(
+            post("/tarefas")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"titulo\":\"Atrasada\",\"prazo\":\"2026-10-01\"}"))
+        .andExpect(status().isBadRequest());
+  }
+
+  @Test
+  void deveFiltrarPorPrioridade() throws Exception {
+    mvc.perform(
+            post("/tarefas")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"titulo\":\"Urgente\",\"prioridade\":\"ALTA\"}"))
+        .andExpect(status().isCreated());
+
+    mvc.perform(get("/tarefas").param("prioridade", "ALTA"))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.length()").value(1))
+        .andExpect(jsonPath("$[0].titulo").value("Urgente"));
+  }
+
+  @Test
+  void tarefasAntigasRecebemPrioridadeMedia() throws Exception {
+    mvc.perform(get("/tarefas/2"))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.prioridade").value("MEDIA"))
+        .andExpect(jsonPath("$.prazo").doesNotExist());
+  }
 }

@@ -2,6 +2,7 @@ package br.edu.ifrs.tarefas.controller;
 
 import br.edu.ifrs.tarefas.dto.CriarTarefaRequest;
 import br.edu.ifrs.tarefas.dto.TarefaResponse;
+import br.edu.ifrs.tarefas.model.Prioridade;
 import br.edu.ifrs.tarefas.model.StatusTarefa;
 import br.edu.ifrs.tarefas.model.Tarefa;
 import br.edu.ifrs.tarefas.service.TarefaService;
@@ -29,8 +30,10 @@ public class TarefaController {
   }
 
   @GetMapping
-  public List<TarefaResponse> listar(@RequestParam(required = false) StatusTarefa status) {
-    return service.listar(status).stream().map(this::paraResposta).toList();
+  public List<TarefaResponse> listar(
+      @RequestParam(required = false) StatusTarefa status,
+      @RequestParam(required = false) Prioridade prioridade) {
+    return service.listar(status, prioridade).stream().map(this::paraResposta).toList();
   }
 
   @GetMapping("/{id}")
@@ -61,6 +64,6 @@ public class TarefaController {
   }
 
   private TarefaResponse paraResposta(Tarefa t) {
-    return TarefaResponse.de(t, service.calcularAtraso(t));
+    return TarefaResponse.de(t, service.estaAtrasada(t), service.calcularAtraso(t));
   }
 }
