@@ -35,8 +35,8 @@ public class TarefaService {
   }
 
   private void validarPrazo(LocalDate prazo) {
-    if (prazo != null && !prazo.isAfter(hoje())) {
-      throw new IllegalArgumentException("O prazo deve ser uma data futura");
+    if (prazo != null && prazo.isBefore(hoje())) {
+      throw new IllegalArgumentException("O prazo não pode estar no passado");
     }
   }
 

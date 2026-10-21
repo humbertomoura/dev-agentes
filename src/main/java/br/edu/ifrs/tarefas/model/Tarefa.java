@@ -86,7 +86,7 @@ public class Tarefa {
 
   /** Atrasada quando não concluída e o limite já passou. No dia do limite ainda está em dia. */
   public boolean estaAtrasada(LocalDate hoje) {
-    return !isConcluida() && hoje.isBefore(limite());
+    return !isConcluida() && limite().isBefore(hoje);
   }
 
   public long diasDeAtraso(LocalDate hoje) {
