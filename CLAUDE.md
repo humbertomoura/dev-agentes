@@ -28,3 +28,7 @@ API REST de tarefas (Java 21, Spring Boot 3, Spring Data JPA, Flyway, H2 em mem�
 - Não altere migrations que já existem; crie uma nova.
 - Não adicione dependências ao `pom.xml` sem perguntar.
 - Não altere testes existentes para fazê-los passar sem perguntar.
+
+## Lições aprendidas
+
+- Datas: uma tarefa só está atrasada **depois** do limite (`limite.isBefore(hoje)`); no próprio dia do prazo ela está em dia. Prazo igual a hoje é válido na criação. Toda regra com datas precisa de teste para ontem, hoje e amanhã. (bug corrigido no Módulo 6, introduzido em `refactor(tarefas): simplifica comparações de datas`)
