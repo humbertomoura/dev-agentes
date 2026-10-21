@@ -7,7 +7,6 @@ import br.edu.ifrs.tarefas.model.Tarefa;
 import br.edu.ifrs.tarefas.repository.TarefaRepository;
 import java.time.Clock;
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,9 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class TarefaService {
-
-  /** Tarefas sem prazo devem ser concluídas em até 7 dias após a criação. */
-  static final int PRAZO_PADRAO_DIAS = 7;
 
   private final TarefaRepository repository;
   private final Clock clock;
@@ -79,25 +75,12 @@ public class TarefaService {
     repository.delete(buscar(id));
   }
 
-  /**
-   * Dias além do prazo. Usa o prazo da tarefa ou, se não houver, 7 dias após a criação. Tarefas
-   * concluídas nunca estão atrasadas.
-   */
   public long calcularAtraso(Tarefa t) {
-    if (t.isConcluida()) {
-      return 0;
-    }
-    LocalDate limite =
-        t.getPrazo() != null ? t.getPrazo() : t.getCriadaEm().plusDays(PRAZO_PADRAO_DIAS);
-    return Math.max(0, ChronoUnit.DAYS.between(limite, hoje()));
+    return t.diasDeAtraso(hoje());
   }
 
   public boolean estaAtrasada(Tarefa t) {
-    LocalDate hoje = hoje();
-    if (t.getPrazo() != null && t.getPrazo().isBefore(hoje) && !t.isConcluida()) {
-      return true;
-    }
-    return t.getPrazo() == null && calcularAtraso(t) > 0;
+    return t.estaAtrasada(hoje());
   }
 
   private LocalDate hoje() {

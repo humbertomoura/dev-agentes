@@ -9,10 +9,14 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 @Entity
 @Table(name = "tarefa")
 public class Tarefa {
+
+  /** Tarefas sem prazo devem ser concluídas em até 7 dias após a criação. */
+  static final int PRAZO_PADRAO_DIAS = 7;
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -73,6 +77,20 @@ public class Tarefa {
 
   public boolean isConcluida() {
     return status == StatusTarefa.CONCLUIDA;
+  }
+
+  /** Data limite: o prazo da tarefa ou, se não houver, 7 dias após a criação. */
+  public LocalDate limite() {
+    return prazo != null ? prazo : criadaEm.plusDays(PRAZO_PADRAO_DIAS);
+  }
+
+  /** Atrasada quando não concluída e o limite já passou. No dia do limite ainda está em dia. */
+  public boolean estaAtrasada(LocalDate hoje) {
+    return !isConcluida() && limite().isBefore(hoje);
+  }
+
+  public long diasDeAtraso(LocalDate hoje) {
+    return estaAtrasada(hoje) ? ChronoUnit.DAYS.between(limite(), hoje) : 0;
   }
 
   public Long getId() {
