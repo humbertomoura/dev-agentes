@@ -44,13 +44,15 @@ Cada módulo tem uma branch com o estado esperado ao final do exercício. Se voc
 
 | Branch | Estado |
 |---|---|
-| `main` | ponto de partida (Módulo 2) |
+| `main` | ponto de partida (Fases 0 e 1) |
+| `modulo-2` | + `docs/visao-geral.md`, exploração conferida no código |
 | `modulo-3` | + `CLAUDE.md` e plano da feature em `docs/plano-prioridade.md` |
 | `modulo-4` | + feature de prioridade e prazo implementada |
 | `modulo-5` | + regra de atraso refatorada para `Tarefa` |
 | `modulo-6-bug` | ponto de partida do Módulo 6, com bugs plantados |
 | `modulo-6` | bugs corrigidos, novos testes e lição registrada no `CLAUDE.md` |
 | `modulo-7` | + skill, subagentes, hook e permissões em `.claude/` |
+| `modulo-8` | + segurança, CI no GitHub Actions e entrega (tag `v1.0.0`) |
 
 ```bash
 git fetch --all
@@ -60,6 +62,10 @@ git switch modulo-4
 ## Exercícios
 
 Os enunciados estão em [`docs/exercicios.md`](docs/exercicios.md). O guia de debugging usado no Módulo 6 está em [`docs/debug.md`](docs/debug.md).
+
+## Roteiro passo a passo
+
+O caminho completo, do clone à versão `v1.0.0`, está em [`docs/roteiro/`](docs/roteiro/README.md): uma fase por módulo, com prompts, comandos, verificação e conceitos aplicados.
 
 ## Estrutura
 

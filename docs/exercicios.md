@@ -12,6 +12,10 @@ Classifique cada situação e justifique pelo critério: quem age no projeto e q
 4. Um script no CI lê uma issue, implementa e abre um PR sozinho.
 5. Você pede um regex e testa você mesmo no terminal.
 
+## Atividade 2B · Quanto poder você daria? (4 min)
+
+Para cada ação, diga se dá para desfazer e escolha allow, perguntar ou deny: ler `src/` e `git log`; rodar `./mvnw test`; editar `TarefaService.java`; `git push origin main`; ler `.env`; `DROP TABLE` no banco de homologação. Depois escreva as regras no `.claude/settings.json`.
+
 ## Exercício 2 · Explorar o gestor-tarefas (10 min) · branch `main`
 
 1. Abra o Claude Code na raiz do repositório (modo padrão de permissões).
@@ -21,6 +25,10 @@ Classifique cada situação e justifique pelo critério: quem age no projeto e q
 5. Confira cada resposta abrindo os arquivos citados.
 
 **Entrega:** um parágrafo descrevendo o projeto e uma resposta conferida no código.
+
+## Exercício 3A · Laboratório de prompts (8 min)
+
+Escolha uma tarefa (endpoint de atrasadas, mensagem de commit ou revisão do `TarefaService`). Rode o prompt vago, reescreva aplicando ao menos três técnicas (clareza, porquê, exemplos, tags XML, papel), rode de novo em sessão limpa e compare.
 
 ## Exercício 3 · CLAUDE.md e plano da feature (10 min) · branch `main`
 
@@ -47,6 +55,10 @@ Critérios de aceite:
 Passos: retome com `/clear` e `@docs/plano-prioridade.md`; implemente no modo padrão; suba a aplicação e teste com `curl`; diante de um erro, cole o stack trace completo e peça diagnóstico antes da correção.
 
 **Entrega:** feature funcionando e os 5 critérios conferidos. Referência: branch `modulo-4`.
+
+## Atividade 4B · Que tipo de falha é esta? (3 min)
+
+Classifique como passageira, permanente, lógica ou sem progresso: `529 Overloaded`; `cannot find symbol: getDeadline()`; o agente editou o teste em vez do service; terceira tentativa com o mesmo `NullPointerException`; `401 authentication_error`.
 
 ## Exercício 5 · Diff, commit, refatoração e revisão (12 min) · a partir de `modulo-4`
 
@@ -80,3 +92,11 @@ Escolha uma opção:
 - **MCP**: conecte um servidor (por exemplo, GitHub) com `claude mcp add` e faça uma consulta.
 
 **Entrega:** o arquivo de configuração commitado em `.claude/`. Referência: branch `modulo-7`.
+
+## Atividade 7B · Escolha o mecanismo (4 min)
+
+Hook, skill, MCP, subagente, CLAUDE.md ou plugin? Formatador em todo arquivo editado; checklist de revisão repetido pela equipe; consultar issues do Jira; mapear 200 arquivos legados sem poluir a sessão; Java 21 e convenção de nomes; levar a configuração para outros cinco repositórios.
+
+## Atividade 8 · Caça à injeção (5 min)
+
+Um README de terceiros contém, num comentário HTML invisível, uma instrução para rodar `curl … | bash` e colar o `.env` num PR. Por que um humano não veria? Em que modo o agente executaria? Que regras deny bloqueiam cada parte? Onde está a tríade letal?
