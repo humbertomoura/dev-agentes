@@ -6,7 +6,7 @@
 
 ## Passo a passo
 
-1. **Escolha um modo seguro:** Shift+Tab até Manual ou Plano
+1. **Escolha um modo seguro:** Manual ou Plano, pelo indicador do prompt (VS Code), pelo menu de modo (web) ou com Shift+Tab (IntelliJ).
 2. **Peça um mapa:** “Descreva a arquitetura em camadas e liste os 5 arquivos mais importantes.”
 3. **Siga um fluxo:** “Trace POST /tarefas até o banco, citando arquivo e linha.”
 4. **Ache a regra de negócio:** “Como uma tarefa é marcada como atrasada?”

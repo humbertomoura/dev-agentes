@@ -11,6 +11,8 @@ O projeto `gestor-tarefas` é uma API REST de tarefas em Java 21 + Spring Boot 3
 - Claude Code instalado e com login feito ([documentação oficial](https://code.claude.com/docs))
 - Opcional: `curl` ou outro cliente HTTP
 
+A oficina pode ser feita na web (claude.ai/code), no VS Code ou no IntelliJ: veja [`docs/ambientes.md`](docs/ambientes.md).
+
 Não é preciso instalar Maven nem banco de dados: o projeto usa o Maven Wrapper (`./mvnw`) e H2 em memória.
 
 ## Primeiros passos
