@@ -95,6 +95,27 @@ A partir da branch `modulo-7`:
 
 Preferências pessoais vão em `.claude/settings.local.json`, que fica fora do Git.
 
+## Projeto concluído
+
+A versão `v1.0.0` é o resultado das oito fases da oficina:
+
+| Fase | O que mudou | Testes |
+|---|---|---|
+| 0 · Preparar o ambiente | projeto clonado e rodando | 13 |
+| 1 · Explorar e documentar | `docs/visao-geral.md` | 13 |
+| 2 · Contexto e plano | `CLAUDE.md` e `docs/plano-prioridade.md` | 13 |
+| 3 · Implementar | prioridade, prazo, filtro e migration V5 | 23 |
+| 4 · Versionar e refatorar | commits limpos e `Tarefa.estaAtrasada()` | 27 |
+| 5 · Caçar o bug | comparação de datas corrigida, testes de borda | 31 |
+| 6 · Configurar o agente | `.claude/` com hook, skill e subagentes | 31 |
+| 7 · Proteger e entregar | deny para rede e segredos, CI e tag | 31 |
+
+## Segurança
+
+- `.claude/settings.json` bloqueia leitura de `.env`, `rm -rf`, `git push`, `curl` e `wget`.
+- O `CLAUDE.md` orienta o agente a tratar conteúdo externo como dado.
+- O CI roda os testes em todo push e pull request; o merge é sempre uma decisão humana.
+
 ## Licença
 
 MIT. Veja [LICENSE](LICENSE).
