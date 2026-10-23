@@ -1,44 +1,19 @@
 # Fase 6 · Configurar o agente
 
-**Módulo 7 · Indo além do básico** · branch de partida `modulo-6` · branch de chegada `modulo-7`
+**Módulo 7 · Indo além do básico** · partida `modulo-6` · referência `modulo-7`
 
-**Objetivo:** Entrega mínima: criar e acionar uma skill de revisão. O restante é a solução completa de referência.
+## Entrega mínima (6 min)
 
-## Passo a passo
+1. Leia `.agents/skills/revisao-codigo/SKILL.md` e adapte o checklist ao seu diff.
+2. Acione `/revisao-codigo` no App/CLI (quando disponível) ou peça ao Antigravity: “Use a skill revisao-codigo e revise somente o diff atual; cite linhas e não edite.”
+3. Valide a revisão no IntelliJ. Faça commit somente da Skill revisada.
 
-1. **Entrega mínima: skill:** crie `.claude/skills/revisao-codigo/SKILL.md` com nome, descrição e passos
-2. **Acione e confira:** /revisao-codigo ou “revise minhas mudanças”; veja a skill ser carregada
-3. **Desafio A: hook:** PostToolUse em Edit|Write com o formatador; edite um arquivo e confirme o resultado
-4. **Desafio B: subagente:** revisor só com Read, Grep e Glob: leitura de fato, sem Bash
-5. **Referência: permissões:** allow para testes; deny para .env, rm -rf e `git push`
-6. **Faça commit:** chore(claude): configuração do agente
+## Desafios opcionais
 
-## Como verificar (saída da referência)
+- **Hook:** demonstre uma checagem pós-edição em arquivo sem credenciais; não dispare `spotless:apply` no projeto inteiro sem avaliar impacto.
+- **Subagente:** crie revisor de acesso restrito a leitura, com ferramentas conforme sua versão do Antigravity.
+- **MCP:** demonstre uma integração sem dados reais e com permissões mínimas.
 
-```text
-$ ls .claude/skills/revisao-codigo
-SKILL.md  checklist.md  scripts/
+Não copie `.claude/settings.json`, `.claude/agents/` ou gatilhos `PostToolUse` literalmente: a sintaxe e os controles do Antigravity são diferentes. Veja `docs/agente-antigravity.md` e [`docs/DEMO_MODULO_7.md`](../DEMO_MODULO_7.md).
 
-> /revisao-codigo
-● Skill(revisao-codigo)
-  achados por gravidade, com arquivo e linha
-```
-
-## Pronto quando
-
-- [ ] Skill criada e acionada
-- [ ] Desafio: hook ou subagente verificado na prática
-- [ ] Solução completa na branch modulo-7
-
-## Arquivos tocados
-
-- `+ .claude/skills/revisao-codigo/`
-- (desafios) .claude/settings.json
-- (desafios) .claude/agents/
-
-## Conceitos aplicados
-
-- Determinístico × probabilístico (Módulo 7)
-- Divulgação progressiva (Módulo 7)
-- Contexto isolado (Módulo 7)
-- Primitivas do MCP (opcional) (Módulo 7)
+**Pronto quando:** Skill carregada/referenciada pelo agente e achados verificados contra código; desafios avançados são opcionais.
