@@ -2,41 +2,39 @@
 
 **Módulo 7 · Indo além do básico** · branch de partida `modulo-6` · branch de chegada `modulo-7`
 
-**Objetivo:** Transformar bons hábitos em configuração versionada da equipe.
+**Objetivo:** Entrega mínima: criar e acionar uma skill de revisão. O restante é a solução completa de referência.
 
 ## Passo a passo
 
-1. **Permissões:** crie .`claude/settings.json com allow` para testes e deny para .env, rm -rf e `git push`
-2. **Hook:** PostToolUse em Edit|Write rodando `./mvnw -q spotless:apply`
-3. **Skill:** crie .`claude/skills/revisao-codigo com SKILL.md`, checklist.md e scripts/cobertura.sh
-4. **Subagentes:** crie .`claude/agents/testador.md` e revisor.md (revisor sem Edit)
-5. **Teste tudo:** edite um arquivo e veja o hook; rode /revisao-codigo; delegue ao testador
-6. **Faça commit:** chore(claude): skill de revisão, subagentes, hook e permissões
+1. **Entrega mínima: skill:** crie `.claude/skills/revisao-codigo/SKILL.md` com nome, descrição e passos
+2. **Acione e confira:** /revisao-codigo ou “revise minhas mudanças”; veja a skill ser carregada
+3. **Desafio A: hook:** PostToolUse em Edit|Write com o formatador; edite um arquivo e confirme o resultado
+4. **Desafio B: subagente:** revisor só com Read, Grep e Glob: leitura de fato, sem Bash
+5. **Referência: permissões:** allow para testes; deny para .env, rm -rf e `git push`
+6. **Faça commit:** chore(claude): configuração do agente
 
-## Como verificar
+## Como verificar (saída da referência)
 
 ```text
-$ .claude/skills/revisao-codigo/scripts/cobertura.sh
-TarefaService                 78.1%
-Tarefa                        87.5%
-TOTAL                         84.4%
+$ ls .claude/skills/revisao-codigo
+SKILL.md  checklist.md  scripts/
 
-$ ./mvnw test
-Tests run: 31, Failures: 0
+> /revisao-codigo
+● Skill(revisao-codigo)
+  achados por gravidade, com arquivo e linha
 ```
 
 ## Pronto quando
 
-- [ ] Hook formata após cada edição
-- [ ] Skill acionada por /revisao-codigo
-- [ ] Cobertura total perto de 84%
+- [ ] Skill criada e acionada
+- [ ] Desafio: hook ou subagente verificado na prática
+- [ ] Solução completa na branch modulo-7
 
 ## Arquivos tocados
 
-- `+ .claude/settings.json`
 - `+ .claude/skills/revisao-codigo/`
-- `+ .claude/agents/testador.md e revisor.md`
-- `~ pom.xml (JaCoCo)`
+- (desafios) .claude/settings.json
+- (desafios) .claude/agents/
 
 ## Conceitos aplicados
 

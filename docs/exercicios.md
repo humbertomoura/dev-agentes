@@ -26,9 +26,9 @@ Para cada ação, diga se dá para desfazer e escolha allow, perguntar ou deny: 
 
 **Entrega:** um parágrafo descrevendo o projeto e uma resposta conferida no código.
 
-## Exercício 3A · Laboratório de prompts (8 min)
+## Exercício 3A · Laboratório de prompts (8 min, opcional)
 
-Escolha uma tarefa (endpoint de atrasadas, mensagem de commit ou revisão do `TarefaService`). Rode o prompt vago, reescreva aplicando ao menos três técnicas (clareza, porquê, exemplos, tags XML, papel), rode de novo em sessão limpa e compare.
+Use a mesma tarefa no antes e no depois e peça só plano ou revisão, sem alterar arquivos. Rode o prompt vago, reescreva e compare pela rubrica: escopo correto, referência ao código, casos de borda e verificação. Para saber qual técnica ajudou, mude uma de cada vez.
 
 ## Exercício 3 · CLAUDE.md e plano da feature (10 min) · branch `main`
 
@@ -40,7 +40,7 @@ Escolha uma tarefa (endpoint de atrasadas, mensagem de commit ou revisão do `Ta
 
 **Entrega:** `CLAUDE.md` commitado e plano salvo em `docs/plano-prioridade.md`. Referência: branch `modulo-3`.
 
-## Exercício 4 · Implementar prioridade e prazo (18 min) · a partir de `modulo-3`
+## Exercício 4 · Implementar prioridade e prazo (20 min) · a partir de `modulo-3`
 
 > Como usuário, quero definir prioridade e prazo nas minhas tarefas, para focar no que é urgente.
 
@@ -50,9 +50,9 @@ Critérios de aceite:
 2. Prazo é opcional e não pode estar no passado na criação.
 3. `GET /tarefas?prioridade=ALTA` filtra pela prioridade.
 4. Tarefa com prazo vencido e não concluída aparece como atrasada.
-5. Tarefas antigas (sem prazo) continuam funcionando.
+5. Tarefa sem prazo mantém a regra atual: atrasada após 7 dias da criação.
 
-Passos: retome com `/clear` e `@docs/plano-prioridade.md`; implemente no modo padrão; suba a aplicação e teste com `curl`; diante de um erro, cole o stack trace completo e peça diagnóstico antes da correção.
+Passos: crie a branch `feat/prioridade-prazo`; retome com contexto limpo e `@docs/plano-prioridade.md`; implemente no modo padrão; suba a aplicação e teste com `curl`; diante de um erro, cole o stack trace completo e peça diagnóstico antes da correção.
 
 **Entrega:** feature funcionando e os 5 critérios conferidos. Referência: branch `modulo-4`.
 
@@ -60,13 +60,13 @@ Passos: retome com `/clear` e `@docs/plano-prioridade.md`; implemente no modo pa
 
 Classifique como passageira, permanente, lógica ou sem progresso: `529 Overloaded`; `cannot find symbol: getDeadline()`; o agente editou o teste em vez do service; terceira tentativa com o mesmo `NullPointerException`; `401 authentication_error`.
 
-## Exercício 5 · Diff, commit, refatoração e revisão (12 min) · a partir de `modulo-4`
+## Exercício 5 · Diff, commit, refatoração e revisão (10 min) · a partir de `modulo-4`
 
 1. Crie a branch `feat/prioridade-prazo`.
-2. Peça ao agente que explique o diff e aponte o que está fora do escopo.
+2. Com alterações locais, use `git diff`; se retomou da branch `modulo-4`, use `git diff modulo-3...HEAD`. Peça ao agente que explique o diff e aponte o que está fora do escopo.
 3. Divida em commits lógicos com Conventional Commits.
 4. Refatore a regra de atraso para `Tarefa.estaAtrasada(hoje)`, com testes verdes antes e depois.
-5. Em sessão nova, peça uma revisão do branch com o checklist dos slides.
+5. Em sessão nova, peça uma revisão de `modulo-3...HEAD` com o checklist dos slides.
 
 **Entrega:** branch com 2 a 4 commits limpos e uma lista de achados da revisão. Referência: branch `modulo-5`.
 
@@ -82,16 +82,17 @@ Dica: há mais de um bug. Nem todos têm teste.
 
 **Entrega:** bugs corrigidos, testes novos e lição no `CLAUDE.md`. Referência: branch `modulo-6`.
 
-## Exercício 7 · Configure o seu agente (10 min) · a partir de `modulo-6`
+## Exercício 7 · Uma skill simples (6 min) · a partir de `modulo-6`
 
-Escolha uma opção:
+**Entrega mínima:** crie `.claude/skills/revisao-codigo/SKILL.md` com nome, descrição e passos, e acione a skill uma vez (`/revisao-codigo` ou "revise minhas mudanças").
 
-- **Skill** `revisao-codigo` com checklist, acionada no seu branch.
-- **Hook** `PostToolUse` que roda `./mvnw -q spotless:apply` após cada edição.
-- **Subagente** `testador` que cobre o filtro por prioridade.
-- **MCP**: conecte um servidor (por exemplo, GitHub) com `claude mcp add` e faça uma consulta.
+Desafios opcionais:
 
-**Entrega:** o arquivo de configuração commitado em `.claude/`. Referência: branch `modulo-7`.
+- **Hook** `PostToolUse` que roda o formatador; edite um arquivo e confirme que ele rodou.
+- **Subagente** revisor só com `Read`, `Grep` e `Glob`: sem `Edit` nem `Bash`, para ser de fato somente leitura.
+- **MCP**: conecte um servidor (por exemplo, GitHub) com `claude mcp add`, se já tiver credencial.
+
+**Entrega:** a skill commitada em `.claude/skills/`. Solução completa de referência: branch `modulo-7`.
 
 ## Atividade 7B · Escolha o mecanismo (4 min)
 

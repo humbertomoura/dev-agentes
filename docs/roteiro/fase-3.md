@@ -6,28 +6,29 @@
 
 ## Passo a passo
 
-1. **Retome o plano:** `/clear` e “Implemente @docs/plano-prioridade.md, um passo por vez.”
-2. **Revise camada a camada:** Prioridade, Tarefa, V5__prioridade_prazo.sql, DTO, service, controller
-3. **Peça os testes:** “Escreva testes unitários e de integração para os 5 critérios.” e `./mvnw test`
-4. **Execute de verdade:** “Suba a app e verifique cada critério com curl.”
-5. **Interprete erros:** cole o stack trace inteiro: “Explique a causa antes de corrigir.”
-6. **Não faça commit ainda:** o diff será analisado na Fase 4
+1. **Crie a branch de trabalho:** `git switch -c feat/prioridade-prazo`  (a partir de modulo-3 ou do seu trabalho)
+2. **Retome o plano:** Contexto limpo e “Implemente @docs/plano-prioridade.md, um passo por vez.”
+3. **Revise camada a camada:** Prioridade, Tarefa, V5__prioridade_prazo.sql, DTO, service, controller
+4. **Teste os critérios:** “Escreva testes para os 5 critérios, inclusive tarefa sem prazo.” e `./mvnw test`
+5. **Execute e interprete:** suba a app e confira com curl; diante de erro, cole o stack trace e peça a causa antes da correção
+6. **Ainda sem commit:** o diff será analisado na Fase 4
 
-## Como verificar
+## Como verificar (saída da referência)
 
 ```text
 $ ./mvnw test
 Tests run: 23, Failures: 0
 
-$ curl -X POST localhost:8080/tarefas -H 'Content-Type: application/json' \
+$ curl -X POST localhost:8080/tarefas \
+  -H 'Content-Type: application/json' \
   -d '{"titulo":"TCC","prioridade":"ALTA"}'
 {"id":5,…,"prioridade":"ALTA","prazo":null,…}
 ```
 
 ## Pronto quando
 
-- [ ] 23 testes verdes
-- [ ] GET /tarefas?prioridade=ALTA filtra
+- [ ] Testes passam (referência: 23)
+- [ ] Os 5 critérios conferidos, inclusive tarefa sem prazo
 - [ ] Prazo no passado devolve 400
 
 ## Arquivos tocados

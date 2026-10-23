@@ -6,14 +6,14 @@
 
 ## Passo a passo
 
-1. **Crie a branch:** `git switch -c feat/prioridade-prazo`
+1. **Veja o que mudou:** Com alterações locais: `git diff. Se retomou da referência: git diff modulo-3...HEAD`
 2. **Leia o diff com o agente:** “Explique o diff e aponte o que está fora do escopo.”
 3. **Faça o commit da feature:** feat(tarefas): adiciona prioridade e prazo
-4. **Proteja o comportamento:** “Escreva TarefaTest com ontem, prazo futuro, concluída e sem prazo.”
+4. **Proteja o comportamento:** “Escreva TarefaTest: ontem, hoje, futuro, concluída e sem prazo.”
 5. **Refatore:** “Mova a regra para Tarefa.estaAtrasada(hoje), sem mudar comportamento.”
-6. **Revise em sessão nova:** “Revise main...HEAD por gravidade, com arquivo e linha.”
+6. **Revise em sessão nova:** “Revise modulo-3...HEAD por gravidade, com arquivo e linha.”
 
-## Como verificar
+## Como verificar (saída da referência)
 
 ```text
 $ git log --oneline -3
@@ -28,8 +28,8 @@ Tests run: 27, Failures: 0
 ## Pronto quando
 
 - [ ] Commits no padrão Conventional Commits
-- [ ] 27 testes verdes antes e depois do refactor
-- [ ] Lista de achados da revisão
+- [ ] Testes passam antes e depois do refactor (referência: 27)
+- [ ] Achados da revisão conferidos no código
 
 ## Arquivos tocados
 

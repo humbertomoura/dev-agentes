@@ -2,6 +2,8 @@
 
 Cada fase corresponde ao fim de um módulo da oficina e termina em uma branch de referência. Se você se perder, faça `git switch` para a branch de chegada da fase anterior e continue dali.
 
+As contagens de testes indicadas são a saída da solução de referência, não uma meta: o que conta é o comportamento verificado.
+
 | Fase | Módulo | De → para | Arquivo |
 |---|---|---|---|
 | 0 · Preparar o ambiente | 1 · De chatbot a agente | `main` → `main` | [fase-0.md](fase-0.md) |

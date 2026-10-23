@@ -6,28 +6,31 @@
 
 ## Passo a passo
 
-1. **Escolha o ambiente:** web (claude.ai/code), VS Code (extensão Claude Code) ou IntelliJ (plugin Claude Code + CLI). Veja [`../ambientes.md`](../ambientes.md).
-2. **Traga o repositório:** na web, conecte o GitHub e escolha `desenvolvimento-agentes`; nas IDEs, `git clone https://github.com/humbertomoura/desenvolvimento-agentes.git`.
-3. **Abra pela raiz:** nas IDEs, abra a pasta do repositório como projeto; na web, selecione a branch `main`.
-4. **Rode os testes:** `./mvnw test` no terminal do IDE; na web, peça ao Claude para rodar.
-5. **Abra o agente:** VS Code, ícone ✱; IntelliJ, Ctrl+Esc; web, nova sessão. Depois, `/status`.
-6. **Observe o loop:** “Explique em 3 frases o que este projeto faz.” Repare nas chamadas ●.
+1. **Escolha o ambiente:** Web: `claude.ai/code · VS Code: extensão Claude Code · IntelliJ: plugin Claude Code + CLI`
+2. **Traga o repositório:** Web: conecte o GitHub e escolha desenvolvimento-agentes · IDE: `git clone do repositório`
+3. **Abra pela raiz:** IDE: abra a pasta do repositório como projeto · Web: selecione a branch main
+4. **Rode os testes:** `./mvnw test no terminal do IDE`; na web, peça ao Claude para rodar
+5. **Abra o agente:** VS Code: ícone ✱ · IntelliJ: Ctrl+Esc · Web: nova sessão; depois `/status`
+6. **Observe o loop:** “Explique em 3 frases o que este projeto faz.” Repare nas chamadas ●
 
-## Como verificar
+Neste projeto, `./mvnw test` roda testes unitários e de integração (`*IT`) porque o Surefire foi configurado para isso. No Windows, use `mvnw.cmd`.
+
+## Como verificar (saída da referência)
 
 ```text
 $ ./mvnw test
-Tests run: 13, Failures: 0, Errors: 0
+Tests run: 13, Failures: 0   # saída da referência
 BUILD SUCCESS
 
-$ curl localhost:8080/tarefas
-[{"id":1,"titulo":"Configurar ambiente",...}]  # 4 tarefas
+$ ./mvnw spring-boot:run          # deixe rodando
+$ curl localhost:8080/tarefas      # em outro terminal
+[{"id":1,"titulo":"Configurar ambiente",...}]
 ```
 
 ## Pronto quando
 
-- [ ] 13 testes verdes
-- [ ] Ambiente escolhido e logado
+- [ ] Todos os testes passam (referência: 13)
+- [ ] API responde depois de iniciar o servidor
 - [ ] Claude Code aberto na raiz do projeto
 
 ## Arquivos tocados

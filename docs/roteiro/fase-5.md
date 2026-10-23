@@ -6,14 +6,14 @@
 
 ## Passo a passo
 
-1. **Reproduza:** `git switch modulo-6-bug && ./mvnw test`  (8 falhas)
+1. **Reproduza:** `git switch modulo-6-bug && ./mvnw test`
 2. **Liste os casos de borda:** “Liste casos de borda de prazo e atraso. Não escreva código.”
-3. **Investigue o histórico:** “Siga @docs/debug.md.” O agente usa `git log -L em estaAtrasada`
-4. **Ache as duas causas:** comparação invertida e prazo igual a hoje rejeitado (sem teste)
+3. **Investigue o histórico:** “Siga @docs/debug.md.” Peça `git log` e `git blame` na regra de atraso
+4. **Demonstre a causa raiz:** prove cada hipótese com um teste antes de corrigir
 5. **Teste primeiro:** escreva os testes de borda que faltam e veja-os falhar
-6. **Corrija e registre:** corrija sem alterar testes; lição no CLAUDE.md; commits test, fix e docs
+6. **Corrija e registre:** corrija sem alterar testes; lição durável no CLAUDE.md; commits test, fix e docs
 
-## Como verificar
+## Como verificar (saída da referência)
 
 ```text
 $ ./mvnw test   # antes
@@ -28,9 +28,9 @@ docs: registra lição sobre comparação de datas…
 
 ## Pronto quando
 
-- [ ] 31 testes verdes
+- [ ] Testes passam (referência: 31)
 - [ ] Nenhum teste existente alterado
-- [ ] Lição registrada no CLAUDE.md
+- [ ] Lição durável registrada no CLAUDE.md
 
 ## Arquivos tocados
 

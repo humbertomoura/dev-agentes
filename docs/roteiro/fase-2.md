@@ -9,25 +9,26 @@
 1. **Gere a base:** `/init` e leia o CLAUDE.md proposto
 2. **Refine o CLAUDE.md:** comandos, camadas, Clock injetado, convenções e “Não faça”
 3. **Faça commit:** `git commit -m "docs: adiciona CLAUDE.md"`
-4. **Peça o plano:** `/clear`, plan mode e prompt com <contexto> <tarefa> <restricoes> <pronto_quando>
+4. **Peça o plano:** `/clear`, plan mode e prompt com `<contexto>`, `<tarefa>`, `<restricoes>` e `<pronto_quando>`
 5. **Critique o plano:** “O que acontece com as tarefas já cadastradas? Algo muda na listagem atual?”
 6. **Salve o plano:** “Salve o plano aprovado em docs/plano-prioridade.md.” e faça commit
 
-## Como verificar
+## Como verificar (saída da referência)
 
 ```text
-$ ls
-CLAUDE.md  docs/  pom.xml  src/ …
+$ git log --oneline -2
+docs: plano da feature de prioridade e prazo
+docs: adiciona CLAUDE.md
 
-$ grep -c "DEFAULT 'MEDIA'" docs/plano-prioridade.md
-1
+$ git show --stat HEAD
+docs/plano-prioridade.md | 31 +++++
 ```
 
 ## Pronto quando
 
-- [ ] CLAUDE.md com menos de 200 linhas
-- [ ] Plano sem mudar o comportamento atual
-- [ ] Default MEDIA para tarefas antigas
+- [ ] CLAUDE.md revisado e enxuto
+- [ ] Plano não muda a listagem atual
+- [ ] Regra sem prazo definida: 7 dias após a criação
 
 ## Arquivos tocados
 
