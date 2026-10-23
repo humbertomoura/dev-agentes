@@ -16,3 +16,5 @@ jobs:
           cache: maven
       - name: Testes unitários e de integração
         run: ./mvnw -B test
+      - name: Formatação
+        run: ./mvnw -B spotless:check

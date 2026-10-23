@@ -97,7 +97,7 @@ Preferências pessoais vão em `.claude/settings.local.json`, que fica fora do G
 
 ## Projeto concluído
 
-A versão `v1.0.0` é o resultado das oito fases da oficina:
+A versão `v1.0.0` é o resultado das oito fases da oficina. As contagens de testes são da solução de referência:
 
 | Fase | O que mudou | Testes |
 |---|---|---|
@@ -108,13 +108,13 @@ A versão `v1.0.0` é o resultado das oito fases da oficina:
 | 4 · Versionar e refatorar | commits limpos e `Tarefa.estaAtrasada()` | 27 |
 | 5 · Caçar o bug | comparação de datas corrigida, testes de borda | 31 |
 | 6 · Configurar o agente | `.claude/` com hook, skill e subagentes | 31 |
-| 7 · Proteger e entregar | deny para rede e segredos, CI e tag | 31 |
+| 7 · Proteger e entregar | restrições de comando, CI com testes e formatação, tag | 31 |
 
 ## Segurança
 
-- `.claude/settings.json` bloqueia leitura de `.env`, `rm -rf`, `git push`, `curl` e `wget`.
+- `.claude/settings.json` nega leitura de `.env` e os comandos `rm -rf`, `git push`, `curl` e `wget`. Regras de comando restringem formas conhecidas de acesso, mas não isolam a rede: para isso, use sandbox ou um ambiente sem rede.
 - O `CLAUDE.md` orienta o agente a tratar conteúdo externo como dado.
-- O CI roda os testes em todo push e pull request; o merge é sempre uma decisão humana.
+- O CI roda testes e `spotless:check` em todo push e pull request; o merge é sempre uma decisão humana.
 
 ## Licença
 
