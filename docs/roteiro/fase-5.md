@@ -11,7 +11,7 @@
 3. **Investigue o histórico:** “Siga @docs/debug.md.” Peça `git log` e `git blame` na regra de atraso
 4. **Demonstre a causa raiz:** prove cada hipótese com um teste antes de corrigir
 5. **Teste primeiro:** escreva os testes de borda que faltam e veja-os falhar
-6. **Corrija e registre:** corrija sem alterar testes; lição durável no CLAUDE.md; commits test, fix e docs
+6. **Corrija e registre:** corrija sem alterar testes; lição durável no AGENTS.md; commits test, fix e docs
 
 ## Como verificar (saída da referência)
 
@@ -30,14 +30,14 @@ docs: registra lição sobre comparação de datas…
 
 - [ ] Testes passam (referência: 31)
 - [ ] Nenhum teste existente alterado
-- [ ] Lição durável registrada no CLAUDE.md
+- [ ] Lição durável registrada no AGENTS.md
 
 ## Arquivos tocados
 
 - `~ model/Tarefa.java`
 - `~ service/TarefaService.java`
 - `~ testes (+4)`
-- `~ CLAUDE.md (lições)`
+- `~ AGENTS.md (lições)`
 
 ## Conceitos aplicados
 

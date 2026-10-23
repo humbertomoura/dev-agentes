@@ -6,7 +6,7 @@
 
 ## Passo a passo
 
-1. **Escolha um modo seguro:** Plano para explorar: indicador do prompt (VS Code), menu de modo (web) ou Shift+Tab (IntelliJ)
+1. **Escolha um modo seguro:** Plano para explorar: indicador do prompt (IntelliJ), menu de modo (web) ou controle de aprovação do Antigravity
 2. **Peça um mapa:** “Descreva a arquitetura em camadas e liste os 5 arquivos mais importantes.”
 3. **Siga um fluxo:** “Trace POST /tarefas até o banco, citando arquivo e linha.”
 4. **Ache a regra de negócio:** “Como uma tarefa é marcada como atrasada?”

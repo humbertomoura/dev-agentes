@@ -1,41 +1,46 @@
-# Ambientes da oficina: web, VS Code e IntelliJ
+# Ambiente gratuito — Antigravity Free + IntelliJ IDEA
 
-O agente é o mesmo nos três ambientes. O que está versionado no repositório (`CLAUDE.md`, `.claude/settings.json`, `.claude/skills/`, `.claude/agents/`) vale em todos. A configuração pessoal em `~/.claude/` vale no VS Code e no IntelliJ da sua máquina, mas não vai para a nuvem.
+**Antes do evento:** confirme que sua conta tem acesso ao plano gratuito e que a ferramenta consegue ler um arquivo e propor uma alteração em um repositório local. Disponibilidade, cota, autenticação e nomes dos menus podem mudar; siga a [documentação atual](https://antigravity.google/docs/getting-started).
 
-## Claude Code na web (claude.ai/code)
+## 1. Preparação
 
-1. Acesse claude.ai/code e conecte o GitHub com a Claude GitHub App.
-2. Crie um ambiente: rede **Trusted** (padrão), variáveis em formato `.env` e, se quiser, um script de setup. A VM já traz OpenJDK 21 com Maven e Gradle.
-3. Script de setup opcional para cachear dependências: `./mvnw -q -DskipTests package`.
-4. Escolha o repositório `desenvolvimento-agentes` e a branch, defina o modo de permissão e descreva a tarefa.
-5. Revise o diff (com comentários por linha) e crie o pull request.
+- Instale Java 21 JDK, Git e IntelliJ IDEA. Ultimate educacional é opcional; Community serve para editar, compilar e testar.
+- Instale o Google Antigravity conforme a documentação e autentique-se numa conta elegível. Não é necessária assinatura individual paga no plano Free, mas há limites.
+- Use o aplicativo Antigravity ou o CLI `agy` se oferecido na sua instalação; se houver integração JetBrains disponível, habilite-a. O terminal do IntelliJ é suficiente para executar build e Git.
+- Verifique a disponibilidade do CLI com `agy --help` quando instalado; não suponha que todos os participantes terão a mesma interface.
 
-Diferenças: comandos que abrem seletores recebem argumento (`/model sonnet`, `/effort high`); não há `/clear` (abra uma nova sessão); `/compact` e `/context` funcionam. Faça push antes de pedir algo que dependa de commits locais.
+## 2. Abrir projeto e conferir
 
-## VS Code (extensão Claude Code)
+```bash
+git clone https://github.com/humbertomoura/dev-agentes.git
+cd dev-agentes
+java -version
+./mvnw test
+./mvnw spring-boot:run
+```
 
-1. Instale a extensão **Claude Code** (Cmd/Ctrl+Shift+X) e faça login.
-2. Abra a pasta raiz do repositório e clique no ícone ✱.
-3. Configurações sugeridas (Cmd/Ctrl+, → Extensions → Claude Code): `initialPermissionMode: plan`, `preferredLocation: sidebar`, `respectGitIgnore: true`.
-4. No rodapé do prompt: modo de permissão, modelo e esforço, uso do contexto. Menu `/`: MCP, skills, hooks, permissões, memória (CLAUDE.md) e plugins.
-5. Contexto: a seleção vai automaticamente; Option/Alt+K insere `@arquivo#linhas`.
+Windows: `mvnw.cmd test`. No IntelliJ, abra a pasta como projeto Maven, escolha JDK 21, espere a indexação e execute os testes pelo painel JUnit. O Maven Wrapper baixa dependências na primeira execução: prepare antes do evento.
 
-## IntelliJ IDEA (plugin Claude Code [Beta])
+## 3. Fluxo de trabalho recomendado
 
-1. Instale o CLI e confira com `claude --version`.
-2. Instale o plugin **Claude Code [Beta]** no JetBrains Marketplace e reinicie o IDE.
-3. Abra o projeto pela raiz e use Cmd/Ctrl+Esc para abrir o Claude Code no terminal do IDE.
-4. Rode `/config` e defina o diff tool como `auto` para ver diffs no visualizador do IntelliJ.
-5. Se o Esc não interromper o Claude, desmarque Settings → Tools → Terminal → *Move focus to the editor with Escape*.
+1. Abrir a pasta da branch correta no ambiente do agente.
+2. Solicitar **somente leitura** na exploração e planejamento; conferir arquivos citados.
+3. Criar ou revisar `AGENTS.md` e consultar `GEMINI.md`.
+4. Solicitar implementação incremental e **aprovar cada ação sensível**.
+5. Rodar `./mvnw test` e examinar o Git diff no IntelliJ.
+6. Criar commit somente depois de revisão humana.
 
-## Equivalências rápidas
+## 4. Segurança e limites
 
-| Ação | Web | VS Code | IntelliJ (CLI no IDE) |
-|---|---|---|---|
-| Modelo | `/model sonnet` | nome do modelo no rodapé | `/model` |
-| Esforço | `/effort high` | linha Effort no seletor | `/effort` |
-| Modo | menu de modo | indicador no rodapé | Shift+Tab |
-| Limpar contexto | nova sessão; `/compact` | nova conversa; `/compact` | `/clear`; `/compact` |
-| CLAUDE.md | do repositório | `/` → Instructions | `/memory` |
-| MCP | conectores da sessão | `/mcp` | `/mcp`, `claude mcp add` |
-| Plugins | declarados no settings do repo | `/plugins` | `/plugin` |
+- Plano Free possui limite de uso; prefira comandos e prompts de escopo pequeno.
+- Não permita leitura de segredos, `git push`, scripts externos ou deleções em lote.
+- As aprovações, a interface do agente e configurações de permissões variam conforme a versão; evite traduzir regras `.claude/settings.json` literalmente.
+- A configuração de skills do laboratório está em `.agents/skills/`; para hooks, MCP e subagentes, consulte a documentação de cada versão e utilize ambientes sem credenciais reais.
+- Se ficar sem cota, compare com o checkpoint da branch ou faça a revisão e os testes manualmente no IntelliJ.
+
+## 5. Links oficiais
+
+- [Antigravity](https://antigravity.google/)
+- [Guia de início](https://antigravity.google/docs/getting-started)
+- [JetBrains IntelliJ IDEA](https://www.jetbrains.com/idea/)
+- [JetBrains para estudantes](https://www.jetbrains.com/community/education/#students)
