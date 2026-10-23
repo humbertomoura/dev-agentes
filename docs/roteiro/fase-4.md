@@ -1,12 +1,12 @@
 # Fase 4 · Versionar e revisar
 
-**Módulo 5 · Claude Code + Git** · branch de partida `modulo-4` · branch de chegada `modulo-5`
+**Módulo 5 · Agentes de IA + Git** · branch de partida `modulo-4` · branch de chegada `modulo-5`
 
 **Objetivo:** Transformar o trabalho em commits limpos, refatorar com segurança e revisar.
 
 ## Passo a passo
 
-1. **Veja o que mudou:** Com alterações locais: `git diff. Se retomou da referência: git diff modulo-3...HEAD`
+1. **Veja o que mudou:** Com alterações locais: `git diff`; se retomou da referência: `git diff modulo-3...HEAD`
 2. **Leia o diff com o agente:** “Explique o diff e aponte o que está fora do escopo.”
 3. **Faça o commit da feature:** feat(tarefas): adiciona prioridade e prazo
 4. **Proteja o comportamento:** “Escreva TarefaTest: ontem, hoje, futuro, concluída e sem prazo.”
