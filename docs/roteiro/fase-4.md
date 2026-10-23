@@ -1,4 +1,4 @@
-# Fase 4 · Versionar, refatorar e revisar
+# Fase 4 · Versionar e revisar
 
 **Módulo 5 · Claude Code + Git** · branch de partida `modulo-4` · branch de chegada `modulo-5`
 
@@ -10,7 +10,7 @@
 2. **Leia o diff com o agente:** “Explique o diff e aponte o que está fora do escopo.”
 3. **Faça o commit da feature:** feat(tarefas): adiciona prioridade e prazo
 4. **Proteja o comportamento:** “Escreva TarefaTest: ontem, hoje, futuro, concluída e sem prazo.”
-5. **Refatore:** “Mova a regra para Tarefa.estaAtrasada(hoje), sem mudar comportamento.”
+5. **Desafio: refatore:** “Mova a regra para Tarefa.estaAtrasada(hoje), sem mudar comportamento.”
 6. **Revise em sessão nova:** “Revise modulo-3...HEAD por gravidade, com arquivo e linha.”
 
 ## Como verificar (saída da referência)
@@ -27,9 +27,9 @@ Tests run: 27, Failures: 0
 
 ## Pronto quando
 
-- [ ] Commits no padrão Conventional Commits
-- [ ] Testes passam antes e depois do refactor (referência: 27)
+- [ ] Um commit revisado no padrão Conventional Commits
 - [ ] Achados da revisão conferidos no código
+- [ ] Desafio: refactor com testes verdes (referência: 27)
 
 ## Arquivos tocados
 

@@ -35,8 +35,8 @@ Use a mesma tarefa no antes e no depois e peça só plano ou revisão, sem alter
 1. Rode `/init` e leia o `CLAUDE.md` gerado.
 2. Corrija e complete: comandos, convenções e duas regras "não faça".
 3. Faça commit do `CLAUDE.md`.
-4. Rode `/clear`, entre em plan mode (Shift+Tab) e peça o plano da feature descrita no Exercício 4.
-5. Critique o plano pelo menos uma vez antes de aprovar. Não implemente ainda.
+4. Limpe o contexto, entre em plan mode e peça o plano da feature descrita no Exercício 4.
+5. Critique o plano e peça para salvá-lo em `docs/plano-prioridade.md`, sem autorizar a implementação.
 
 **Entrega:** `CLAUDE.md` commitado e plano salvo em `docs/plano-prioridade.md`. Referência: branch `modulo-3`.
 
@@ -52,7 +52,7 @@ Critérios de aceite:
 4. Tarefa com prazo vencido e não concluída aparece como atrasada.
 5. Tarefa sem prazo mantém a regra atual: atrasada após 7 dias da criação.
 
-Passos: crie a branch `feat/prioridade-prazo`; retome com contexto limpo e `@docs/plano-prioridade.md`; implemente no modo padrão; suba a aplicação e teste com `curl`; diante de um erro, cole o stack trace completo e peça diagnóstico antes da correção.
+Passos: **primeiro, crie a branch** `feat/prioridade-prazo`; retome com contexto limpo e `@docs/plano-prioridade.md`; implemente no modo padrão; suba a aplicação e teste com `curl`; diante de um erro, cole o stack trace completo e peça diagnóstico antes da correção.
 
 **Entrega:** feature funcionando e os 5 critérios conferidos. Referência: branch `modulo-4`.
 
@@ -60,15 +60,15 @@ Passos: crie a branch `feat/prioridade-prazo`; retome com contexto limpo e `@doc
 
 Classifique como passageira, permanente, lógica ou sem progresso: `529 Overloaded`; `cannot find symbol: getDeadline()`; o agente editou o teste em vez do service; terceira tentativa com o mesmo `NullPointerException`; `401 authentication_error`.
 
-## Exercício 5 · Diff, commit, refatoração e revisão (10 min) · a partir de `modulo-4`
+## Exercício 5 · Diff, commit e revisão (10 min) · a partir de `modulo-4`
 
-1. Crie a branch `feat/prioridade-prazo`.
-2. Com alterações locais, use `git diff`; se retomou da branch `modulo-4`, use `git diff modulo-3...HEAD`. Peça ao agente que explique o diff e aponte o que está fora do escopo.
-3. Divida em commits lógicos com Conventional Commits.
-4. Refatore a regra de atraso para `Tarefa.estaAtrasada(hoje)`, com testes verdes antes e depois.
-5. Em sessão nova, peça uma revisão de `modulo-3...HEAD` com o checklist dos slides.
+1. Continue na branch `feat/prioridade-prazo` criada no Exercício 4.
+2. Veja o diff: `git diff` se tem alterações locais, ou `git diff modulo-3...HEAD` se retomou da branch `modulo-4`.
+3. Peça ao agente que explique o diff e aponte o que está fora do escopo; faça um commit revisado (Conventional Commits).
+4. Em sessão nova, peça a revisão de `modulo-3...HEAD` e confira cada achado no código.
+5. Desafio: refatore a regra de atraso para `Tarefa.estaAtrasada(hoje)`, com testes verdes antes e depois.
 
-**Entrega:** branch com 2 a 4 commits limpos e uma lista de achados da revisão. Referência: branch `modulo-5`.
+**Entrega mínima:** um commit revisado e os achados da revisão conferidos no código. Referência: branch `modulo-5`.
 
 ## Exercício 6 · Caçar o bug plantado (15 min) · branch `modulo-6-bug`
 
@@ -84,7 +84,7 @@ Dica: há mais de um bug. Nem todos têm teste.
 
 ## Exercício 7 · Uma skill simples (6 min) · a partir de `modulo-6`
 
-**Entrega mínima:** crie `.claude/skills/revisao-codigo/SKILL.md` com nome, descrição e passos, e acione a skill uma vez (`/revisao-codigo` ou "revise minhas mudanças").
+**Entrega mínima:** crie uma skill de arquivo único, `.claude/skills/revisao-codigo/SKILL.md`, com nome, descrição e passos (use `git diff modulo-3...HEAD`), e acione a skill uma vez (`/revisao-codigo` ou "revise minhas mudanças").
 
 Desafios opcionais:
 
