@@ -1,100 +1,54 @@
-# Do Prompt ao Commit: programando com Claude Code
+# Do Prompt ao Commit: programação com agentes de IA
 
-Repositório da oficina ministrada no **IFRS Campus Osório** em **23/10/2026, das 19h15 às 22h20**.
+**Oficina prática — Google Antigravity Free + IntelliJ IDEA**, Java 21, Spring Boot 3, Maven Wrapper, Flyway e H2. Projeto de referência: `gestor-tarefas`.
 
-O projeto `gestor-tarefas` é uma API REST de tarefas em Java 21 + Spring Boot 3. Ele é o fio condutor da oficina: cada módulo adiciona uma camada ao mesmo código, sempre com o Claude Code.
-
-## Pré-requisitos
-
-- Java 21 (JDK)
-- Git
-- Claude Code instalado e com login feito ([documentação oficial](https://code.claude.com/docs))
-- Opcional: `curl` ou outro cliente HTTP
-
-A oficina pode ser feita na web (claude.ai/code), no VS Code ou no IntelliJ: veja [`docs/ambientes.md`](docs/ambientes.md).
-
-Não é preciso instalar Maven nem banco de dados: o projeto usa o Maven Wrapper (`./mvnw`) e H2 em memória.
+> O Antigravity tem um plano gratuito sujeito a limites e elegibilidade. Antes da oficina, teste o acesso no seu computador e consulte os termos oficiais. A licença educacional do IntelliJ não garante créditos de IA; a IDE é o ambiente de desenvolvimento.
 
 ## Primeiros passos
 
+1. Instale Git, JDK 21 e IntelliJ IDEA (a integração direta requer **2026.2.1+**; versões anteriores usam o CLI no terminal).
+2. Instale e autentique o Antigravity seguindo a [documentação oficial](https://antigravity.google/docs/getting-started).
+3. Abra este repositório no IntelliJ e verifique o JDK 21.
+4. No terminal integrado, execute:
+
 ```bash
-git clone https://github.com/humbertomoura/desenvolvimento-agentes.git
-cd desenvolvimento-agentes
-./mvnw test                 # roda testes unitários e de integração
-./mvnw spring-boot:run      # sobe a API em http://localhost:8080
-claude                      # abre o Claude Code na raiz do projeto
+git clone https://github.com/humbertomoura/dev-agentes.git
+cd dev-agentes
+./mvnw test
+./mvnw spring-boot:run
 ```
 
-No Windows, use `mvnw.cmd` no lugar de `./mvnw`.
+No Windows, use `mvnw.cmd`. Abra o agente Antigravity: no IntelliJ 2026.2.1+, `JetBrains AI > Settings > Agents > Antigravity`; ou execute `agy` no terminal integrado. A interface pode variar por versão. Nunca cole chaves em prompts ou faça push de segredos.
 
-## Endpoints
+## Atividades e referências
 
-| Método | Caminho | Descrição |
-|---|---|---|
-| GET | `/tarefas?status=PENDENTE&prioridade=ALTA` | lista tarefas, com filtros opcionais |
-| GET | `/tarefas/{id}` | detalha uma tarefa |
-| POST | `/tarefas` | cria tarefa: `{"titulo": "...", "descricao": "...", "prioridade": "ALTA", "prazo": "2026-11-30"}` |
-| PATCH | `/tarefas/{id}/iniciar` | move de PENDENTE para EM_ANDAMENTO |
-| PATCH | `/tarefas/{id}/concluir` | conclui a tarefa |
-| DELETE | `/tarefas/{id}` | exclui a tarefa |
-
-O console do H2 fica em `http://localhost:8080/h2-console` (JDBC URL `jdbc:h2:mem:tarefas`, usuário `sa`, sem senha).
+- [Configuração gratuita do ambiente](docs/ambientes.md)
+- [Exercícios](docs/exercicios.md)
+- [Roteiro passo a passo](docs/roteiro/README.md)
+- [Guia de debugging](docs/debug.md)
+- [Instruções compartilhadas do agente](AGENTS.md)
+- [Skill de revisão](.agents/skills/revisao-codigo/SKILL.md)
+- [Guia rápido para a aula](docs/GUIA_RAPIDO_ANTIGRAVITY.md)
+- [Checklist de validação do instrutor](docs/VALIDACAO_OFICINA.md)
+- [Extensão opcional de 3h05 para 4h](docs/roteiro/EXTENSAO_4H.md)
 
 ## Branches de referência
 
-Cada módulo tem uma branch com o estado esperado ao final do exercício. Se você se perder, faça checkout da branch do módulo anterior e continue dali.
+`main` (início), `modulo-2` (exploração), `modulo-3` (contexto e plano), `modulo-4` (prioridade e prazo), `modulo-5` (refatoração), `modulo-6-bug` (bug plantado), `modulo-6` (correções), `modulo-7` (extensões) e `modulo-8` (entrega), mais tag histórica `v1.0.0`.
 
-| Branch | Estado |
-|---|---|
-| `main` | ponto de partida (Fases 0 e 1) |
-| `modulo-2` | + `docs/visao-geral.md`, exploração conferida no código |
-| `modulo-3` | + `CLAUDE.md` e plano da feature em `docs/plano-prioridade.md` |
-| `modulo-4` | + feature de prioridade e prazo implementada |
-| `modulo-5` | + regra de atraso refatorada para `Tarefa` |
-| `modulo-6-bug` | ponto de partida do Módulo 6, com bugs plantados |
-| `modulo-6` | bugs corrigidos, novos testes e lição registrada no `CLAUDE.md` |
-| `modulo-7` | + skill, subagentes, hook e permissões em `.claude/` |
-| `modulo-8` | + segurança, CI no GitHub Actions e entrega (tag `v1.0.0`) |
+**Atenção:** as branches são soluções de referência, não etapas executadas automaticamente. Faça uma branch de trabalho própria para cada exercício.
 
-```bash
-git fetch --all
-git switch modulo-4
-```
+## API
 
-## Exercícios
+- `GET /tarefas?status=PENDENTE`
+- `GET /tarefas/{id}`
+- `POST /tarefas` com `titulo` e `descricao`
+- `PATCH /tarefas/{id}/iniciar`
+- `PATCH /tarefas/{id}/concluir`
+- `DELETE /tarefas/{id}`
 
-Os enunciados estão em [`docs/exercicios.md`](docs/exercicios.md). O guia de debugging usado no Módulo 6 está em [`docs/debug.md`](docs/debug.md).
-
-## Roteiro passo a passo
-
-O caminho completo, do clone à versão `v1.0.0`, está em [`docs/roteiro/`](docs/roteiro/README.md): uma fase por módulo, com prompts, comandos, verificação e conceitos aplicados.
-
-## Estrutura
-
-```
-src/main/java/br/edu/ifrs/tarefas/
-  controller/   endpoints REST e tratamento de erros
-  service/      regras de negócio (criação, conclusão, atraso)
-  repository/   acesso a dados (Spring Data JPA)
-  model/        entidade Tarefa e enums
-  dto/          objetos de entrada e saída da API
-  config/       relógio injetável (facilita testes com datas)
-src/main/resources/db/migration/   migrations Flyway (V1, V2, ...)
-```
-
-## Configuração do agente (`.claude/`)
-
-A partir da branch `modulo-7`:
-
-| Arquivo | Para quê |
-|---|---|
-| `.claude/settings.json` | permissões (allow/deny) e hook que formata o código após cada edição |
-| `.claude/skills/revisao-codigo/` | skill de revisão com checklist e script de cobertura (JaCoCo) |
-| `.claude/agents/testador.md` | subagente que escreve e roda testes |
-| `.claude/agents/revisor.md` | subagente revisor, sem permissão de edição |
-
-Preferências pessoais vão em `.claude/settings.local.json`, que fica fora do Git.
+O console H2 está em `http://localhost:8080/h2-console` com URL JDBC `jdbc:h2:mem:tarefas`, usuário `sa` e senha vazia no ambiente didático.
 
 ## Licença
 
-MIT. Veja [LICENSE](LICENSE).
+MIT, conforme [LICENSE](LICENSE). A ferramenta agente e os modelos são serviços externos com condições próprias.
