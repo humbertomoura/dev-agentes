@@ -6,11 +6,11 @@
 
 ## Passo a passo
 
-1. **Escolha um modo seguro:** Plano para explorar: indicador do prompt (IntelliJ), menu de modo (web) ou controle de aprovação do Antigravity
+1. **Escolha um modo seguro:** solicite análise somente leitura e configure **Request Review** ou **Default**. `/plan` serve para planejamento estruturado no App/CLI; confira o modo equivalente na integração JetBrains
 2. **Peça um mapa:** “Descreva a arquitetura em camadas e liste os 5 arquivos mais importantes.”
 3. **Siga um fluxo:** “Trace POST /tarefas até o banco, citando arquivo e linha.”
 4. **Ache a regra de negócio:** “Como uma tarefa é marcada como atrasada?”
-5. **Documente:** Volte ao modo Manual e peça: “Escreva docs/visao-geral.md com arquitetura, fluxo e regra de atraso.”
+5. **Documente:** Após autorizar a edição e peça: “Escreva docs/visao-geral.md com arquitetura, fluxo e regra de atraso.”
 6. **Revise e faça commit:** `git add docs/visao-geral.md && git commit -m "docs: visão geral do projeto"`
 
 ## Como verificar (saída da referência)
@@ -36,6 +36,6 @@ $ grep -n "calcularAtraso" docs/visao-geral.md
 ## Conceitos aplicados
 
 - Janela de contexto (Módulo 2)
-- Ferramentas Read, Grep, Glob (Módulo 2)
+- Ferramentas de leitura, busca e navegação no codebase (Módulo 2)
 - Modos de permissão (Módulo 2)
 - Amostragem: compare com o colega (Módulo 2)

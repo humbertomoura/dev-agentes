@@ -4,10 +4,10 @@
 
 ## 1. Preparação
 
-- Instale Java 21 JDK, Git e IntelliJ IDEA. Ultimate educacional é opcional; Community serve para editar, compilar e testar.
+- Instale JDK 21, Git e IntelliJ IDEA. A licença educacional Ultimate é opcional. **Para integração nativa com Antigravity, o IntelliJ precisa ser 2026.2.1 ou posterior**; para versões antigas, use o CLI no terminal da IDE.
 - Instale o Google Antigravity conforme a documentação e autentique-se numa conta elegível. Não é necessária assinatura individual paga no plano Free, mas há limites.
-- Use o aplicativo Antigravity ou o CLI `agy` se oferecido na sua instalação; se houver integração JetBrains disponível, habilite-a. O terminal do IntelliJ é suficiente para executar build e Git.
-- Verifique a disponibilidade do CLI com `agy --help` quando instalado; não suponha que todos os participantes terão a mesma interface.
+- Para a integração nativa, use `JetBrains AI > Settings > Agents`, procure Antigravity, instale e autentique-se; exige IntelliJ 2026.2.1+. Se a integração não estiver disponível, instale o CLI `agy` e use-o no terminal integrado da IDE.
+- Verifique o CLI com `agy --version` e inicie-o pelo comando `agy` na pasta do projeto. No App/CLI, `/plan` inicia planejamento. Menus e recursos podem diferir entre superfícies.
 
 ## 2. Abrir projeto e conferir
 
@@ -26,7 +26,7 @@ Windows: `mvnw.cmd test`. No IntelliJ, abra a pasta como projeto Maven, escolha 
 1. Abrir a pasta da branch correta no ambiente do agente.
 2. Solicitar **somente leitura** na exploração e planejamento; conferir arquivos citados.
 3. Criar ou revisar `AGENTS.md` e consultar `GEMINI.md`.
-4. Solicitar implementação incremental e **aprovar cada ação sensível**.
+4. Planejar com `/plan` (App/CLI); solicitar implementação incremental e **aprovar cada ação sensível**.
 5. Rodar `./mvnw test` e examinar o Git diff no IntelliJ.
 6. Criar commit somente depois de revisão humana.
 
@@ -44,3 +44,8 @@ Windows: `mvnw.cmd test`. No IntelliJ, abra a pasta como projeto Maven, escolha 
 - [Guia de início](https://antigravity.google/docs/getting-started)
 - [JetBrains IntelliJ IDEA](https://www.jetbrains.com/idea/)
 - [JetBrains para estudantes](https://www.jetbrains.com/community/education/#students)
+
+## Documentos complementares
+
+- [Guia rápido do participante](GUIA_RAPIDO_ANTIGRAVITY.md)
+- [Checklist de ensaio do instrutor](VALIDACAO_OFICINA.md)

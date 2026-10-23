@@ -6,7 +6,7 @@
 
 ## Passo a passo
 
-1. **Reproduza:** `git switch modulo-6-bug && ./mvnw test`
+1. **Reproduza:** `git switch modulo-6-bug && git switch -c fix/bug-datas && ./mvnw test` (trabalhe na sua branch)
 2. **Liste os casos de borda:** “Liste casos de borda de prazo e atraso. Não escreva código.”
 3. **Investigue o histórico:** “Siga @docs/debug.md.” Peça `git log` e `git blame` na regra de atraso
 4. **Demonstre a causa raiz:** prove cada hipótese com um teste antes de corrigir

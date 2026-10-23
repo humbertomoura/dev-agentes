@@ -2,17 +2,17 @@
 
 | Na oficina original | Na versão atual |
 |---|---|
-| `claude` | Antigravity (app/integração ou CLI `agy`, se disponível) |
+| `claude` | Antigravity (app/integração ou CLI `agy`, instalado e autenticado) |
 | `CLAUDE.md` | `AGENTS.md` e ponte `GEMINI.md` |
 | `/init` | criar/revisar manualmente `AGENTS.md` |
 | `/clear` | iniciar conversa nova |
-| `plan mode` | instrução explícita de **somente análise, sem editar**; conferir modo de planejamento na interface |
+| `plan mode` | `/plan` no Antigravity App ou CLI; não autorizar edição antes de aprovar o plano |
 | `.claude/skills/` | `.agents/skills/` |
 | `.claude/settings.json` | configurações de aprovação/permissão do Antigravity; **não copiar JSON** |
-| `.claude/agents/` | agentes personalizados de acordo com a versão |
-| `PostToolUse` | hooks disponíveis na instalação; não presumir evento/sintaxe idênticos |
+| `.claude/agents/` | `.agents/agents/`, usando nomes reais das ferramentas do Antigravity |
+| `PostToolUse` do Claude | `.agents/hooks.json` com schema próprio do Antigravity; não copiar o JSON original |
 | `claude mcp add` | configuração MCP própria do Antigravity |
-| `/revisao-codigo` | solicitação em linguagem natural usando a skill de revisão |
+| `/revisao-codigo` | `/revisao-codigo` em superfícies com slash skills ou pedido em linguagem natural |
 
 ## Prompt reutilizável para planejamento
 
@@ -25,3 +25,15 @@
 ## Observação
 
 O arquivo `AGENTS.md` contém instruções; não é uma barreira de segurança. Permissões e isolamento precisam ser configurados e testados separadamente.
+
+## Comandos oficiais úteis (App/CLI)
+
+`/plan`, `/permissions`, `/usage`, `/diff`, `/context`, `/agents`, `/learn`. Confira disponibilidade na superfície usada.
+
+## IntelliJ
+
+A integração nativa exige **IntelliJ 2026.2.1+** e é instalada por `JetBrains AI > Settings > Agents > Antigravity`. Se indisponível, utilize `agy` pelo terminal do IntelliJ. Não confunda a assinatura educacional do IntelliJ com créditos de IA.
+
+## Permissões
+
+Em macOS/Linux há perfis **Request Review**, **Default**, **Auto (Preview)** e **Turbo** em versões elegíveis. Para a oficina prefira Request Review ou Default; **não** use Turbo. Windows usa controles que podem diferir; sempre teste o comportamento antes de demonstrar.

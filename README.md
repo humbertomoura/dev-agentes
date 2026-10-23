@@ -6,7 +6,7 @@
 
 ## Primeiros passos
 
-1. Instale Git, JDK 21 e IntelliJ IDEA (Community ou Ultimate educacional).
+1. Instale Git, JDK 21 e IntelliJ IDEA (a integração direta requer **2026.2.1+**; versões anteriores usam o CLI no terminal).
 2. Instale e autentique o Antigravity seguindo a [documentação oficial](https://antigravity.google/docs/getting-started).
 3. Abra este repositório no IntelliJ e verifique o JDK 21.
 4. No terminal integrado, execute:
@@ -18,7 +18,7 @@ cd dev-agentes
 ./mvnw spring-boot:run
 ```
 
-No Windows, use `mvnw.cmd`. Abra o agente Antigravity no ambiente disponível (aplicativo, integração JetBrains ou CLI, conforme a instalação); a interface pode variar por versão. Nunca cole chaves em prompts ou faça push de segredos.
+No Windows, use `mvnw.cmd`. Abra o agente Antigravity: no IntelliJ 2026.2.1+, `JetBrains AI > Settings > Agents > Antigravity`; ou execute `agy` no terminal integrado. A interface pode variar por versão. Nunca cole chaves em prompts ou faça push de segredos.
 
 ## Atividades e referências
 
@@ -28,6 +28,9 @@ No Windows, use `mvnw.cmd`. Abra o agente Antigravity no ambiente disponível (a
 - [Guia de debugging](docs/debug.md)
 - [Instruções compartilhadas do agente](AGENTS.md)
 - [Skill de revisão](.agents/skills/revisao-codigo/SKILL.md)
+- [Guia rápido para a aula](docs/GUIA_RAPIDO_ANTIGRAVITY.md)
+- [Checklist de validação do instrutor](docs/VALIDACAO_OFICINA.md)
+- [Extensão opcional de 3h05 para 4h](docs/roteiro/EXTENSAO_4H.md)
 
 ## Branches de referência
 

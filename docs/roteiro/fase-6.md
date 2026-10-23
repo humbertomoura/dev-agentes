@@ -5,7 +5,7 @@
 ## Entrega mínima (6 min)
 
 1. Leia `.agents/skills/revisao-codigo/SKILL.md` e adapte o checklist ao seu diff.
-2. Peça ao Antigravity: “Use a skill revisao-codigo e revise somente o diff atual; cite linhas e não edite.”
+2. Acione `/revisao-codigo` no App/CLI (quando disponível) ou peça ao Antigravity: “Use a skill revisao-codigo e revise somente o diff atual; cite linhas e não edite.”
 3. Valide a revisão no IntelliJ. Faça commit somente da Skill revisada.
 
 ## Desafios opcionais
@@ -14,6 +14,6 @@
 - **Subagente:** crie revisor de acesso restrito a leitura, com ferramentas conforme sua versão do Antigravity.
 - **MCP:** demonstre uma integração sem dados reais e com permissões mínimas.
 
-Não copie `.claude/settings.json`, `.claude/agents/` ou gatilhos `PostToolUse` literalmente: a sintaxe e os controles do Antigravity são diferentes. Veja `docs/agente-antigravity.md`.
+Não copie `.claude/settings.json`, `.claude/agents/` ou gatilhos `PostToolUse` literalmente: a sintaxe e os controles do Antigravity são diferentes. Veja `docs/agente-antigravity.md` e [`docs/DEMO_MODULO_7.md`](../DEMO_MODULO_7.md).
 
 **Pronto quando:** Skill carregada/referenciada pelo agente e achados verificados contra código; desafios avançados são opcionais.

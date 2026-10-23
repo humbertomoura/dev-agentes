@@ -19,7 +19,7 @@ API REST didática em Java 21, Spring Boot 3.3.5, Maven, Flyway, H2, Spring Data
 - Para datas de negócio, use `Clock` injetado (evite `LocalDate.now()`), pois testes fixam o relógio.
 - Antes de editar, explique arquivos e impacto; faça mudanças pequenas.
 - Endpoint novo requer teste; preserve testes anteriores e contratos públicos.
-- Prioridade: BAIXA, MEDIA, ALTA; padrão MEDIA; prazo opcional.
+- Na **feature a implementar durante a oficina**, a prioridade exigida é BAIXA/MEDIA/ALTA (padrão MEDIA) e o prazo é opcional. Não presuma que já esteja implementada nesta branch.
 - Tarefa sem prazo é considerada atrasada após 7 dias, segundo a lógica existente.
 
 ## Segurança e revisão

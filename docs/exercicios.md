@@ -72,7 +72,7 @@ Classifique como passageira, permanente, lógica ou sem progresso: `529 Overload
 
 ## Exercício 6 · Caçar o bug plantado (15 min) · branch `modulo-6-bug`
 
-1. Faça checkout de `modulo-6-bug` e rode `./mvnw test`.
+1. Partindo de `modulo-6-bug`, crie `fix/bug-datas` e rode `./mvnw test`.
 2. Peça a lista de casos de borda das regras de prazo e atraso e gere os testes que faltarem.
 3. Siga `@docs/debug.md`: reproduzir, hipóteses, causa raiz, provar.
 4. Corrija a implementação **sem alterar os testes existentes**.
@@ -84,7 +84,7 @@ Dica: há mais de um bug. Nem todos têm teste.
 
 ## Exercício 7 · Uma Skill simples (6 min) · a partir de `modulo-6`
 
-**Entrega mínima:** revise `.agents/skills/revisao-codigo/SKILL.md`, peça ao Antigravity para utilizá-la na revisão do diff e confira ao menos um achado no código.
+**Entrega mínima:** parta da branch `modulo-6`; crie ou revise `.agents/skills/revisao-codigo/SKILL.md`, peça ao Antigravity para utilizá-la na revisão do diff e confira ao menos um achado no código.
 
 Desafios opcionais: hook pós-edição limitado; subagente revisor com ferramentas somente de leitura; MCP de demonstração com credenciais descartáveis. Nenhum deles é obrigatório na cota Free. A configuração do Claude Code na branch histórica `modulo-7` é apenas referência conceitual.
 
